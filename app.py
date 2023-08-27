@@ -5,18 +5,18 @@ app = Flask(__name__)
 babyProducts = [{
   'id': 1,
   'title': '10 Pcs Silicone Dining Set',
-  'Price': '$27.90',
-  'Description': 'For babies'
+  'price': '$27.90',
+  'description': 'For babies'
 }, {
   'id': 2,
   'title': '10 Pcs Silicone Dining Set',
-  'Price': '$27.90',
-  'Description': 'For babies'
+  'price': '$27.90',
+  'description': 'For babies'
 }, {
   'id': 3,
   'title': '10 Pcs Silicone Dining Set',
-  'Price': '$27.90',
-  'Description': 'For babies'
+  'price': '$27.90',
+  'description': 'For babies'
 }]
 
 
