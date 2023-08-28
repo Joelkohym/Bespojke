@@ -102,32 +102,35 @@ def Vessel_movement():
 
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive():
-    try:
-        data = request.get_json()  # Get the raw data from the request body
+  try:
+    data = request.get_json()  # Get the raw data from the request body
+        # Assuming the data is in JSON format, parse it
+    json_data = json.loads(data)
+    # Save the JSON data to a JSON file
+    with open('data.json', 'w') as json_file:
+        json.dump(json_data, json_file)
+    return "JSON data saved successfully."
+  except json.JSONDecodeError as e:
+    # If the data is not in valid JSON format, save it as a text file
+    with open('data.txt', 'w') as text_file:
+        text_file.write(data.decode('utf-8'))
+    
+    return "Data saved as a text file."
 
-        # Attempt to write data to a text file
-        with open('data.txt', 'w') as text_file:
-            text_file.write(data.decode('utf-8'))
+# try:
+#     # Assuming the data is in JSON format, parse it
+#     json_data = json.loads(data)
+#     # Save the JSON data to a JSON file
+#     with open('data.json', 'w') as json_file:
+#         json.dump(json_data, json_file)
+#     return "JSON data saved successfully."
+# except json.JSONDecodeError as e:
+# If the data is not in valid JSON format, save it as a text file
 
-        return "Data saved as a text file."
-    except Exception as e:
-        # Handle the error gracefully
-        return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
-
-  # try:
-  #     # Assuming the data is in JSON format, parse it
-  #     json_data = json.loads(data)
-  #     # Save the JSON data to a JSON file
-  #     with open('data.json', 'w') as json_file:
-  #         json.dump(json_data, json_file)
-  #     return "JSON data saved successfully."
-  # except json.JSONDecodeError as e:
-  # If the data is not in valid JSON format, save it as a text file
-
-  # the json file to save the output data
-  #save_file = open("savedata.json", "w")
-  #save_file.write(request.data)
-  #save_file.close()
+# the json file to save the output data
+#save_file = open("savedata.json", "w")
+#save_file.write(request.data)
+#save_file.close()
 
 
 @app.route("/api/vessel/receive/get")
