@@ -99,7 +99,7 @@ def Vessel_movement():
     )
     print(response_vessel_movement.text)
 
-  return response_vessel_movement.json()
+  return response_vessel_movement.text
 
 
 #   conn =     http.client.HTTPSConnection('bespojke.com/api/sgtd')
