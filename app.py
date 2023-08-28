@@ -3,7 +3,8 @@ import requests
 import json
 import pygsheets
 import os
-
+import streamlit as st
+import leafmap.foliumap as leafmap
 # import uuid
 # from replit import db
 # from gsheets import write_spread_sheet_data
@@ -140,18 +141,13 @@ def Vessel_movement_receive(formName=None):
 
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
-  import streamlit as st
-  import leafmap.foliumap as leafmap
-  
   st.set_page_config(layout="wide")
-  
   st.sidebar.info(
       """
       - Web App URL: <https://streamlit.geemap.org>
       - GitHub repository: <https://github.com/giswqs/streamlit-geospatial>
       """
   )
-  
   st.sidebar.title("Contact")
   st.sidebar.info(
       """
@@ -159,9 +155,7 @@ def VMR_GET():
       [GitHub](https://github.com/giswqs) | [Twitter](https://twitter.com/giswqs) | [YouTube](https://www.youtube.com/c/QiushengWu) | [LinkedIn](https://www.linkedin.com/in/qiushengwu)
       """
   )
-  
   st.title("Marker Cluster")
-  
   with st.expander("See source code"):
       with st.echo():
   
@@ -180,7 +174,7 @@ def VMR_GET():
               add_legend=True,
           )
   
-  return m.to_streamlit(height=700)
+          m.to_streamlit(height=700)
 
 
 if __name__ == '__main__':
