@@ -5,7 +5,7 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10.0,<3.11"
 Flask = "^2.3.3"
 requests = "^2.31.0"
 WTForms = "^3.0.1"
@@ -17,7 +17,8 @@ pygsheets = "^2.0.6"
 earthengine-api = "^0.1.367"
 geemap = "^0.25.0"
 streamlit = "^1.26.0"
-leafmap = "^0.23.3"
+leafmap = "0.23.3"
+geopandas = "0.13.2"
 
 [tool.poetry.dev-dependencies]
 

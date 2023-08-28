@@ -65,6 +65,21 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.12.2"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "blinker"
 version = "1.6.2"
 description = "Fast, simple object-to-object and broadcast signaling"
@@ -132,6 +147,34 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[[package]]
+name = "click-plugins"
+version = "1.1.1"
+description = "An extension module for click to enable registering CLI commands via setuptools entry-points."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = ">=4.0"
+
+[package.extras]
+dev = ["pytest (>=3.6)", "pytest-cov", "wheel", "coveralls"]
+
+[[package]]
+name = "cligj"
+version = "0.7.2"
+description = "Click params for commmand line interfaces to GeoJSON"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, <4"
+
+[package.dependencies]
+click = ">=4.0"
+
+[package.extras]
+test = ["pytest-cov"]
 
 [[package]]
 name = "colorama"
@@ -244,6 +287,43 @@ python-versions = "*"
 tests = ["asttokens", "pytest", "littleutils", "rich"]
 
 [[package]]
+name = "filelock"
+version = "3.12.3"
+description = "A platform independent file lock."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+typing-extensions = {version = ">=4.7.1", markers = "python_version < \"3.11\""}
+
+[package.extras]
+docs = ["furo (>=2023.7.26)", "sphinx-autodoc-typehints (>=1.24)", "sphinx (>=7.1.2)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.3)", "diff-cover (>=7.7)", "pytest-cov (>=4.1)", "pytest-mock (>=3.11.1)", "pytest-timeout (>=2.1)", "pytest (>=7.4)"]
+
+[[package]]
+name = "fiona"
+version = "1.9.4.post1"
+description = "Fiona reads and writes spatial data files"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+attrs = ">=19.2.0"
+certifi = "*"
+click = ">=8.0,<9.0"
+click-plugins = ">=1.0"
+cligj = ">=0.5"
+six = "*"
+
+[package.extras]
+all = ["fiona"]
+calc = ["shapely"]
+s3 = ["boto3 (>=1.3.1)"]
+test = ["fiona", "pytest (>=7)", "pytest-cov", "pytz"]
+
+[[package]]
 name = "flask"
 version = "2.3.3"
 description = "A simple framework for building complex web applications."
@@ -326,6 +406,21 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "gdown"
+version = "4.7.1"
+description = "Google Drive direct download of big files."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+beautifulsoup4 = "*"
+filelock = "*"
+requests = {version = "*", extras = ["socks"]}
+six = "*"
+tqdm = "*"
+
+[[package]]
 name = "geemap"
 version = "0.25.0"
 description = "A Python package for interactive mapping using Google Earth Engine and ipyleaflet"
@@ -378,6 +473,29 @@ future = "*"
 ratelim = "*"
 requests = "*"
 six = "*"
+
+[[package]]
+name = "geojson"
+version = "3.0.1"
+description = "Python bindings and utilities for GeoJSON"
+category = "main"
+optional = false
+python-versions = ">=3.7, <3.12"
+
+[[package]]
+name = "geopandas"
+version = "0.13.2"
+description = "Geographic pandas extensions"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+fiona = ">=1.8.19"
+packaging = "*"
+pandas = ">=1.1.0"
+pyproj = ">=3.0.1"
+shapely = ">=1.7.1"
 
 [[package]]
 name = "gitdb"
@@ -791,6 +909,43 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "leafmap"
+version = "0.23.3"
+description = "A Python package for geospatial analysis and interactive mapping in a Jupyter environment."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+bqplot = "*"
+colour = "*"
+folium = "*"
+gdown = "*"
+geojson = "*"
+ipyevents = "*"
+ipyfilechooser = "*"
+ipyleaflet = "*"
+ipywidgets = "*"
+matplotlib = "*"
+numpy = "*"
+pandas = "*"
+pyshp = "*"
+pystac-client = "*"
+python-box = "*"
+scooby = "*"
+whiteboxgui = "*"
+xyzservices = "*"
+
+[package.extras]
+all = ["black", "black", "bokeh", "boto3", "codespell", "cogeo-mosaic", "datapane", "deadlink", "ffmpeg-python", "geopandas", "googledrivedownloader", "gradio", "jupyter-bokeh", "jupyterlab (>=3.0.0)", "keplergl", "ipygany", "ipysheet", "ipyvtklink", "laspy", "localtileserver", "mapclassify (>=2.4.0)", "mss", "netcdf4", "osmnx", "owslib", "palettable", "panel", "plotly", "psycopg2", "pycrs", "pydeck", "pyntcloud", "pyvista-xarray", "rasterio", "rasterstats", "rio-cogeo", "rioxarray", "sqlalchemy", "streamlit-folium", "xarray-leaflet", "PyYAML (==6.0.1)"]
+apps = ["streamlit-folium", "voila"]
+backends = ["bokeh", "keplergl", "pydeck", "plotly", "here-map-widget-for-jupyter"]
+lidar = ["ipygany", "ipyvtklink", "laspy", "panel", "pyntcloud", "pyvista"]
+raster = ["localtileserver", "jupyter-server-proxy", "rio-cogeo", "rioxarray", "netcdf4", "pynhd", "py3dep"]
+sql = ["psycopg2", "sqlalchemy"]
+vector = ["geopandas", "osmnx"]
+
+[[package]]
 name = "markdown-it-py"
 version = "3.0.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
@@ -895,10 +1050,7 @@ optional = false
 python-versions = ">=3.8"
 
 [package.dependencies]
-numpy = [
-    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
-    {version = ">=1.23.2", markers = "python_version >= \"3.11\""},
-]
+numpy = {version = ">=1.21.0", markers = "python_version >= \"3.10\""}
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
 tzdata = ">=2022.1"
@@ -1119,12 +1271,69 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pyproj"
+version = "3.6.0"
+description = "Python interface to PROJ (cartographic projections and coordinate transformations library)"
+category = "main"
+optional = false
+python-versions = ">=3.9"
+
+[package.dependencies]
+certifi = "*"
+
+[[package]]
 name = "pyshp"
 version = "2.3.1"
 description = "Pure Python read/write support for ESRI Shapefile format"
 category = "main"
 optional = false
 python-versions = ">=2.7"
+
+[[package]]
+name = "pysocks"
+version = "1.7.1"
+description = "A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "pystac"
+version = "1.8.1"
+description = "Python library for working with the SpatioTemporal Asset Catalog (STAC) specification"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+jsonschema = {version = ">=4.0.1", optional = true, markers = "extra == \"validation\""}
+python-dateutil = ">=2.7.0"
+
+[package.extras]
+bench = ["asv (>=0.5,<1.0)", "virtualenv (>=20.22,<21.0)"]
+docs = ["Sphinx (>=6.2,<7.0)", "ipython (>=8.12,<9.0)", "jinja2 (<4.0)", "jupyter (>=1.0,<2.0)", "nbsphinx (>=0.9,<1.0)", "pydata-sphinx-theme (>=0.13,<1.0)", "sphinx-autobuild (==2021.3.14)", "sphinx-design (>=0.4,<1.0)", "sphinxcontrib-fulltoc (>=1.2,<2.0)"]
+jinja2 = ["jinja2 (<4.0)"]
+orjson = ["orjson (>=3.5)"]
+test = ["black (>=23.3,<24.0)", "codespell (>=2.2,<3.0)", "coverage (>=7.2,<8.0)", "doc8 (>=1.1,<2.0)", "html5lib (>=1.1,<2.0)", "jinja2 (<4.0)", "jsonschema (>=4.17,<5.0)", "mypy (>=1.2,<2.0)", "orjson (>=3.8,<4.0)", "pre-commit (>=3.2,<4.0)", "pytest-cov (>=4.0,<5.0)", "pytest-mock (>=3.10,<4.0)", "pytest-recording (>=0.12,<1.0)", "pytest (>=7.3,<8.0)", "ruff (==0.0.275)", "types-html5lib (>=1.1,<2.0)", "types-orjson (>=3.6,<4.0)", "types-python-dateutil (>=2.8,<3.0)", "types-urllib3 (>=1.26,<2.0)", "vcrpy (<5)"]
+urllib3 = ["urllib3 (>=1.26)"]
+validation = ["jsonschema (>=4.0.1)"]
+
+[[package]]
+name = "pystac-client"
+version = "0.7.2"
+description = "Python library for working with SpatioTemporal Asset Catalog (STAC) APIs."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+pystac = {version = ">=1.7.2", extras = ["validation"]}
+python-dateutil = ">=2.8.2"
+requests = ">=2.28.2"
+
+[package.extras]
+dev = ["black (>=23.3.0,<23.4.0)", "codespell (>=2.2.4,<2.3.0)", "coverage (>=7.2,<8.0)", "doc8 (>=1.1.1,<1.2.0)", "importlib-metadata (>=6.7,<7.0)", "mypy (>=1.2,<2.0)", "orjson (>=3.8,<4.0)", "pre-commit (>=3.2,<4.0)", "pytest-benchmark (>=4.0.0,<4.1.0)", "pytest-console-scripts (>=1.4.0,<1.5.0)", "pytest-cov (>=4.1.0,<4.2.0)", "pytest-recording (>=0.12.2,<0.13.0)", "pytest (>=7.4,<8.0)", "recommonmark (>=0.7.1,<0.8.0)", "requests-mock (>=1.11.0,<1.12.0)", "ruff (==0.0.275)", "types-python-dateutil (>=2.8.19,<2.9.0)", "types-requests (>=2.31.0,<2.32.0)", "urllib3 (<2)", "tomli (>=2.0,<3.0)"]
+docs = ["Sphinx (>=6.2,<7.0)", "boto3 (>=1.26,<2.0)", "cartopy (>=0.21,<1.0)", "geojson (>=3.0.1,<3.1.0)", "geopandas (>=0.13.0,<0.14.0)", "geoviews (>=1.9,<2.0)", "hvplot (>=0.8.3,<0.9.0)", "ipykernel (>=6.22,<7.0)", "ipython (>=8.12,<9.0)", "jinja2 (<4.0)", "matplotlib (>=3.7.1,<3.8.0)", "myst-parser (>=2.0,<3.0)", "nbsphinx (>=0.9,<1.0)", "pydata-sphinx-theme (>=0.13,<1.0)", "pygeoif (>=1.0,<2.0)", "scipy (>=1.10,<2.0)", "sphinxcontrib-fulltoc (>=1.2,<2.0)"]
 
 [[package]]
 name = "python-box"
@@ -1208,6 +1417,7 @@ python-versions = ">=3.7"
 certifi = ">=2017.4.17"
 charset-normalizer = ">=2,<4"
 idna = ">=2.5,<4"
+PySocks = {version = ">=1.5.6,<1.5.7 || >1.5.7", optional = true, markers = "extra == \"socks\""}
 urllib3 = ">=1.21.1,<3"
 
 [package.extras]
@@ -1275,6 +1485,21 @@ python-versions = ">=3.7"
 cpu = ["psutil", "mkl"]
 
 [[package]]
+name = "shapely"
+version = "2.0.1"
+description = "Manipulation and analysis of geometric objects"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+numpy = ">=1.14"
+
+[package.extras]
+docs = ["numpydoc (>=1.1.0,<1.2.0)", "matplotlib", "sphinx", "sphinx-book-theme", "sphinx-remove-toctrees"]
+test = ["pytest", "pytest-cov"]
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -1289,6 +1514,14 @@ description = "A pure Python implementation of a sliding window memory map manag
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[[package]]
+name = "soupsieve"
+version = "2.4.1"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.7"
 
 [[package]]
 name = "stack-data"
@@ -1377,6 +1610,23 @@ description = "Tornado is a Python web framework and asynchronous networking lib
 category = "main"
 optional = false
 python-versions = ">= 3.8"
+
+[[package]]
+name = "tqdm"
+version = "4.66.1"
+description = "Fast, Extensible Progress Meter"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
+notebook = ["ipywidgets (>=6)"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
 
 [[package]]
 name = "traitlets"
@@ -1509,6 +1759,31 @@ MarkupSafe = ">=2.1.1"
 watchdog = ["watchdog (>=2.3)"]
 
 [[package]]
+name = "whitebox"
+version = "2.3.1"
+description = "An advanced geospatial data analysis platform"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Click = ">=6.0"
+
+[[package]]
+name = "whiteboxgui"
+version = "2.3.0"
+description = "An interactive GUI for whitebox-tools in a Jupyter-based environment"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+ipyfilechooser = "*"
+ipytree = "*"
+ipywidgets = "*"
+whitebox = "*"
+
+[[package]]
 name = "widgetsnbextension"
 version = "4.0.8"
 description = "Jupyter interactive widgets for Jupyter Notebook"
@@ -1564,8 +1839,8 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-ena
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.10"
-content-hash = "8193caa494b91729e849bb511c36edefc39d50afdcb6c3cdf701e790e2803220"
+python-versions = ">=3.10.0,<3.11"
+content-hash = "166b7a1fa3d49aecf328ea9c3520a7d2bfa5180a1ee08a5effd3c8f4a737824f"
 
 [metadata.files]
 altair = []
@@ -1573,6 +1848,7 @@ appnope = []
 asttokens = []
 attrs = []
 backcall = []
+beautifulsoup4 = []
 blinker = []
 bqplot = []
 branca = []
@@ -1580,6 +1856,8 @@ cachetools = []
 certifi = []
 charset-normalizer = []
 click = []
+click-plugins = []
+cligj = []
 colorama = []
 colour = []
 comm = []
@@ -1589,13 +1867,18 @@ decorator = []
 earthengine-api = []
 eerepr = []
 executing = []
+filelock = []
+fiona = []
 flask = []
 flask-wtf = []
 folium = []
 fonttools = []
 future = []
+gdown = []
 geemap = []
 geocoder = []
+geojson = []
+geopandas = []
 gitdb = []
 gitpython = []
 google-api-core = []
@@ -1625,6 +1908,7 @@ jsonschema = []
 jsonschema-specifications = []
 jupyterlab-widgets = []
 kiwisolver = []
+leafmap = []
 markdown-it-py = []
 markupsafe = []
 matplotlib = []
@@ -1652,7 +1936,11 @@ pygsheets = []
 pympler = []
 pyparsing = []
 pyperclip = []
+pyproj = []
 pyshp = []
+pysocks = []
+pystac = []
+pystac-client = []
 python-box = []
 python-dateutil = []
 pytz = []
@@ -1665,14 +1953,17 @@ rich = []
 rpds-py = []
 rsa = []
 scooby = []
+shapely = []
 six = []
 smmap = []
+soupsieve = []
 stack-data = []
 streamlit = []
 tenacity = []
 toml = []
 toolz = []
 tornado = []
+tqdm = []
 traitlets = []
 traittypes = []
 typing-extensions = []
@@ -1684,6 +1975,8 @@ validators = []
 watchdog = []
 wcwidth = []
 werkzeug = []
+whitebox = []
+whiteboxgui = []
 widgetsnbextension = []
 wtforms = []
 xds-protos = []
