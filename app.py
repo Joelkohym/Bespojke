@@ -2,6 +2,12 @@ from flask import Flask, render_template, jsonify, request
 import http.client
 import requests
 import json
+import os
+import sys
+import pickle
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 
 app = Flask(__name__)
 
@@ -11,17 +17,29 @@ babyProducts = [{
   'price': '$27.90',
   'description': 'For babies'
 }]
-# }, {
-#   'id': 2,
-#   'title': '10 Pcs Silicone Dining Set',
-#   'price': '$27.90',
-#   'description': 'For babies'
-# }, {
-#   'id': 3,
-#   'title': '10 Pcs Silicone Dining Set',
-#   'price': '$27.90',
-#   'description': 'For babies'
-# }]
+
+DEFAULT_CONF_DIR = os.path.join(os.environ['HOME'], '.google')
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+
+AUTHORIZATION_GUIDANCE="""
+Please download Google client configuration from ENABLE GOOGLE SHEETS API button
+at https://developers.google.com/sheets/api/quickstart/python to "%s"
+"""
+
+USAGE="""
+Usage: python3 sheet.py 'GOOGLE_SHEET_ID' [GOOGLE_SHEET_RANGE]
+Outputs contents of specified range of specified Google spreadsheet.
+
+Setup: ./setup.sh; source *-env/bin/activate
+
+%s
+
+First time usage opens browser with downloaded credentials to authorize. 
+""" % (AUTHORIZATION_GUIDANCE % os.path.join(DEFAULT_CONF_DIR, 'credentials.json'))
+
+
+
+
 
 
 @app.route("/")
@@ -101,47 +119,18 @@ def Vessel_movement():
 
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive():
-  data = request.data# Get the raw data from the request body
-      # Assuming the data is in JSON format, parse it
+  data = request.data  # Get the raw data from the request body
+  # Assuming the data is in JSON format, parse it
   #json_data = json.loads(data)
   # Save the JSON data to a JSON file
   print(data)
-  with open('data.txt', 'w') as text_file:
-      text_file.write(data.decode('utf-8'))
+  #carry gsheet writing
+  
   return "Data saved as a text file."
-
-
-# try:
-#     # Assuming the data is in JSON format, parse it
-#     json_data = json.loads(data)
-#     # Save the JSON data to a JSON file
-#     with open('data.json', 'w') as json_file:
-#         json.dump(json_data, json_file)
-#     return "JSON data saved successfully."
-# except json.JSONDecodeError as e:
-# If the data is not in valid JSON format, save it as a text file
-
-# the json file to save the output data
-#save_file = open("savedata.json", "w")
-#save_file.write(request.data)
-#save_file.close()
-
 
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
   pass
-
-
-#   conn =     http.client.HTTPSConnection('bespojke.com/api/sgtd')
-#   conn.request("POST", "/", '''{
-#   "test": "event"
-# }''', {'Content-Type': 'application/json'})
-#   # Get the HTTP response
-#   connResponse = conn.getresponse();
-# # Read the HTTP response
-#   response     = connResponse.read();
-# # Print the HTTP response
-#   print(response);
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)

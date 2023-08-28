@@ -8,6 +8,11 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.10"
 Flask = "^2.3.3"
 requests = "^2.31.0"
+WTForms = "^3.0.1"
+xds-protos = "^0.0.11"
+Flask-WTF = "^1.1.1"
+google-api-python-client = "^2.97.0"
+google-auth-oauthlib = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 
