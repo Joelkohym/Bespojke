@@ -160,53 +160,27 @@ def VMR_GET():
       """
   )
   
+  st.title("Marker Cluster")
   
-  def app():
-      st.title("Search Basemaps")
-      st.markdown(
-          """
-      This app is a demonstration of searching and loading basemaps from [xyzservices](https://github.com/geopandas/xyzservices) and [Quick Map Services (QMS)](https://github.com/nextgis/quickmapservices). Selecting from 1000+ basemaps with a few clicks.  
-      """
-      )
+  with st.expander("See source code"):
+      with st.echo():
   
-      with st.expander("See demo"):
-          st.image("https://i.imgur.com/0SkUhZh.gif")
+          m = leafmap.Map(center=[40, -100], zoom=4)
+          cities = 'https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_cities.csv'
+          regions = 'https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_regions.geojson'
   
-      row1_col1, row1_col2 = st.columns([3, 1])
-      width = 800
-      height = 600
-      tiles = None
+          m.add_geojson(regions, layer_name='US Regions')
+          m.add_points_from_xy(
+              cities,
+              x="longitude",
+              y="latitude",
+              color_column='region',
+              icon_names=['gear', 'map', 'leaf', 'globe'],
+              spin=True,
+              add_legend=True,
+          )
   
-      with row1_col2:
-  
-          checkbox = st.checkbox("Search Quick Map Services (QMS)")
-          keyword = st.text_input("Enter a keyword to search and press Enter:")
-          empty = st.empty()
-  
-          if keyword:
-              options = leafmap.search_xyz_services(keyword=keyword)
-              if checkbox:
-                  qms = leafmap.search_qms(keyword=keyword)
-                  if qms is not None:
-                      options = options + qms
-  
-              tiles = empty.multiselect(
-                  "Select XYZ tiles to add to the map:", options)
-  
-          with row1_col1:
-              m = leafmap.Map()
-  
-              if tiles is not None:
-                  for tile in tiles:
-                      m.add_xyz_service(tile)
-  
-              m.to_streamlit(height=height)
-  
-
-  app()  
-
-
-  return app()
+  m.to_streamlit(height=700)
 
 
 if __name__ == '__main__':
