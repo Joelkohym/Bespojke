@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import http.client
 import requests
 import json
@@ -46,12 +46,10 @@ def SGTD():
   consumes_list = r_GET.json()['data']['consumes']
   # Check the response
   if r_GET.status_code == 200:
-    response = "Config Data retrieved successfully!"
     print("Config Data retrieved successfully!")
     #print(r_GET.text)
     #print(r_GET.json())
   else:
-    response = "Config Data failed successfully!"
     print(f"Failed to get Config Data. Status code: {r_GET.status_code}")
     print(r_GET.text
           )  # Print the response content if the request was not successful
@@ -100,6 +98,20 @@ def Vessel_movement():
     print(response_vessel_movement.text)
 
   return response_vessel_movement.text
+
+
+@app.route("/api/vessel/receive", methods=['POST'])
+def Vessel_movement_receive():
+  print(request.data)
+  # the json file to save the output data
+  save_file = open("savedata.json", "w")
+  save_file.write(request.data)
+  save_file.close()
+
+
+@app.route("/api/vessel/receive/get")
+def VMR_GET():
+  pass
 
 
 #   conn =     http.client.HTTPSConnection('bespojke.com/api/sgtd')
