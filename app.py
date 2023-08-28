@@ -66,30 +66,7 @@ def SGTD():
 @app.route("/api/vessel")
 def Vessel_movement():
   API_Key = 'VJN5vqP8LfZxVCycQT6PvpJ0VM4Vk2pW'
-  # Make the GET request
-  url = 'https://sgtradexdummy-lbo.pitstop.uat.sgtradex.io/api/v1/config'
-  r_GET = requests.post(url, headers={'SGTRADEX-API-KEY': API_Key})
-  # Check the response
-  if r_GET.status_code == 200:
-    response = "Config Data retrieved successfully!"
-    print("Config Data retrieved successfully!")
-    #print(r_GET.text)
-    #print(r_GET.json())
-  else:
-    response = "Config Data failed successfully!"
-    print(f"Failed to get Config Data. Status code: {r_GET.status_code}")
-    print(r_GET.text
-          )  # Print the response content if the request was not successful
-  consumes_list = r_GET.json()['data']['consumes']
-  system_ids_names = []
   vessel_imo = "9702699"
-
-  #===================PULL======================================
-  for consume in consumes_list:
-    if consume['id'] == 'vessel_current_position':
-      from_list = consume['from']
-      for from_item in from_list:
-        system_ids_names.append((from_item['id'], from_item['name']))
   url_vessel_movement = "https://sgtradexdummy-lbo.pitstop.uat.sgtradex.io/api/v1/data/pull/vessel_movement"
   on_behalf_of_id = "49f04a6f-f157-479b-b211-18931fad4ca4"
   payload = {
