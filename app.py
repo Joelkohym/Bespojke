@@ -141,7 +141,7 @@ def Vessel_movement_receive(formName=None):
 
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
-  m = leafmap.Map(center=[40, -100], zoom=4)
+  m = leafmap.Map(center=(103.862, 1.25749), zoom=10)
   cities = 'static/sg_cities.csv'
   regions = 'static/singapore_administrative_region_boundaries.geojson'
 
@@ -155,6 +155,7 @@ def VMR_GET():
       spin=True,
       add_legend=True,
   )
+  {"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[103.953238,1.304523],[103.950405,1.298863],[103.958731,1.295261],[103.963623,1.301436],[103.959675,1.309325],[103.953238,1.304523]]]}}
   m.to_html("mymap.html")
   return render_template('mymap.html')
 
