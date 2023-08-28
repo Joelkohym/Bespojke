@@ -180,7 +180,7 @@ def VMR_GET():
               add_legend=True,
           )
   
-  m.to_streamlit(height=700)
+  return m.to_streamlit(height=700)
 
 
 if __name__ == '__main__':
