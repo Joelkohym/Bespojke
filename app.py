@@ -35,7 +35,7 @@ def list_jobs():
   return jsonify(babyProducts)
 
 
-@app.route("/api/SGTD")
+@app.route("/api/sgtd")
 def SGTD():
   API_Key = 'VJN5vqP8LfZxVCycQT6PvpJ0VM4Vk2pW'
   # Make the GET request
