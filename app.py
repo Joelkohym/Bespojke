@@ -104,9 +104,9 @@ def Vessel_movement():
 def Vessel_movement_receive():
   print(request.data)
   # the json file to save the output data
-  save_file = open("savedata.json", "w")
-  save_file.write(request.data)
-  save_file.close()
+  #save_file = open("savedata.json", "w")
+  #save_file.write(request.data)
+  #save_file.close()
 
 
 @app.route("/api/vessel/receive/get")
