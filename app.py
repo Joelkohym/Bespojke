@@ -96,26 +96,20 @@ def Vessel_movement():
       f"Failed to PULL vessel_movement data. Status code: {response_vessel_movement.status_code}"
     )
     print(response_vessel_movement.text)
-
   return response_vessel_movement.text
 
 
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive():
-  try:
-    data = request.get_json()  # Get the raw data from the request body
-        # Assuming the data is in JSON format, parse it
-    json_data = json.loads(data)
-    # Save the JSON data to a JSON file
-    with open('data.json', 'w') as json_file:
-        json.dump(json_data, json_file)
-    return "JSON data saved successfully."
-  except json.JSONDecodeError as e:
-    # If the data is not in valid JSON format, save it as a text file
-    with open('data.txt', 'w') as text_file:
-        text_file.write(data.decode('utf-8'))
-    
-    return "Data saved as a text file."
+  data = request.data# Get the raw data from the request body
+      # Assuming the data is in JSON format, parse it
+  #json_data = json.loads(data)
+  # Save the JSON data to a JSON file
+  print(data)
+  with open('data.txt', 'w') as text_file:
+      text_file.write(data)
+  return "Data saved as a text file."
+
 
 # try:
 #     # Assuming the data is in JSON format, parse it
