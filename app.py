@@ -13,10 +13,7 @@ import os
 
 app = Flask(__name__)
 
-creds = json.loads(os.environ.get('GSHEET_API_CREDENTIALS'))
-with open('gcreds.json', 'w') as fp:
-    json.dump(creds, fp)
-gc = pygsheets.authorize(service_file = 'gcreds.json')
+gc = pygsheets.service_account(filename="gcreds.json")
 
 babyProducts = [{
   'id': 1,
