@@ -38,10 +38,12 @@ def list_jobs():
 
 @app.route("/api/sgtd")
 def SGTD():
+  system_ids_names = []
   API_Key = 'VJN5vqP8LfZxVCycQT6PvpJ0VM4Vk2pW'
   # Make the GET request
   url = 'https://sgtradexdummy-lbo.pitstop.uat.sgtradex.io/api/v1/config'
   r_GET = requests.get(url, headers={'SGTRADEX-API-KEY': API_Key})
+  consumes_list = r_GET.json()['data']['consumes']
   # Check the response
   if r_GET.status_code == 200:
     response = "Config Data retrieved successfully!"
@@ -53,20 +55,12 @@ def SGTD():
     print(f"Failed to get Config Data. Status code: {r_GET.status_code}")
     print(r_GET.text
           )  # Print the response content if the request was not successful
-
-
-#   conn =     http.client.HTTPSConnection('bespojke.com/api/sgtd')
-#   conn.request("POST", "/", '''{
-#   "test": "event"
-# }''', {'Content-Type': 'application/json'})
-#   # Get the HTTP response
-#   connResponse = conn.getresponse();
-# # Read the HTTP response
-#   response     = connResponse.read();
-# # Print the HTTP response
-#   print(response);
-
-  return response
+  for consume in consumes_list:
+    if consume['id'] == 'vessel_current_position':
+      from_list = consume['from']
+      for from_item in from_list:
+        system_ids_names.append((from_item['id'], from_item['name']))
+  return system_ids_names
 
 
 @app.route("/api/vessel")
