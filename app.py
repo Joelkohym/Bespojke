@@ -99,6 +99,8 @@ def Vessel_movement():
     )
     print(response_vessel_movement.text)
 
+  return response_vessel_movement.json()
+
 
 #   conn =     http.client.HTTPSConnection('bespojke.com/api/sgtd')
 #   conn.request("POST", "/", '''{
@@ -110,8 +112,6 @@ def Vessel_movement():
 #   response     = connResponse.read();
 # # Print the HTTP response
 #   print(response);
-
-  return response_vessel_movement.json()
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
