@@ -63,7 +63,7 @@ def SGTD():
 # # Print the HTTP response
 #   print(response);
 
-  return jsonify(r_GET)
+  return r_GET.text
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
