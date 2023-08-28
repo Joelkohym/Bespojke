@@ -3,9 +3,6 @@ import requests
 import json
 import pygsheets
 import os
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 
 # import uuid
 # from replit import db
@@ -32,9 +29,7 @@ scope = [
   "https://spreadsheets.google.com/feeds",
   "https://www.googleapis.com/auth/drive"
 ]
-creds = ServiceAccountCredentials.from_json_keyfile_name(
-  "your-credentials.json", scope)
-client = gspread.authorize(creds)
+
 
 @app.route("/")
 def hello_jovian():
@@ -105,24 +100,24 @@ def Vessel_movement():
 
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive(formName=None):
-  try:
-    data = request.data  # Get the raw data from the request body
-    data_str = data.decode('utf-8')  # Decode data as a UTF-8 string
-    # Open the Google Sheets spreadsheet by title or URL
-    spreadsheet = client.open("https://docs.google.com/spreadsheets/d/1yvUCUCfZsTPSMf88i9JoZocSsSm7iyclVCimCGpuTEk/edit#gid=1822445911")
-    # Select a specific worksheet within the spreadsheet
-    worksheet = spreadsheet.get_worksheet("replit")  # Change the index if needed
-    # Append the data to the worksheet
-    worksheet.append_table([data_str])
-    #json_data = json.loads(data)
-    # Save the JSON data to a JSON file
-    print(data)
-    #carry gsheet writing
-    return "Data saved to Google Sheets."
+  try:  
+      data = request.data  # Get the raw data from the request body
+      data_str = data.decode('utf-8')  # Decode data as a UTF-8 string
+
+      # Open the Google Sheets spreadsheet by title or URL
+      spreadsheet = gc.open("https://docs.google.com/spreadsheets/d/1yvUCUCfZsTPSMf88i9JoZocSsSm7iyclVCimCGpuTEk/edit#gid=0")
+
+      # Select a specific worksheet within the spreadsheet
+      worksheet = spreadsheet.replit  # Change the sheet name if needed
+
+      # Append the data to the worksheet
+      worksheet.append_table(values=[data_str.split(',')])  # Assuming data is comma-separated
+
+      return "Data saved to Google Sheets."
   except Exception as e:
-    # Handle the error gracefully and log it
-    print("An error occurred:", str(e))
-    return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
+      # Handle the error gracefully and log it
+      print("An error occurred:", str(e))
+      return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
 
 
 @app.route("/api/vessel/receive/get")
