@@ -43,10 +43,12 @@ def SGTD():
   r_GET = requests.get(url, headers={'SGTRADEX-API-KEY': API_Key})
   # Check the response
   if r_GET.status_code == 200:
+    response = "Config Data retrieved successfully!"
     print("Config Data retrieved successfully!")
     #print(r_GET.text)
     #print(r_GET.json())
   else:
+    response = "Config Data failed successfully!"
     print(f"Failed to get Config Data. Status code: {r_GET.status_code}")
     print(r_GET.text
           )  # Print the response content if the request was not successful
@@ -63,7 +65,7 @@ def SGTD():
 # # Print the HTTP response
 #   print(response);
 
-  return r_GET.text
+  return response
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)
