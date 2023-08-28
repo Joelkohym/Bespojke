@@ -107,7 +107,7 @@ def Vessel_movement_receive():
   # Save the JSON data to a JSON file
   print(data)
   with open('data.txt', 'w') as text_file:
-      text_file.write(data)
+      text_file.write(data.decode('utf-8'))
   return "Data saved as a text file."
 
 
