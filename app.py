@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 
-gc = pygsheets.authorize(service_file= 'gcreds.json')
+gc = pygsheets.authorize(service_file='gcreds.json')
 
 babyProducts = [{
   'id': 1,
@@ -33,6 +33,7 @@ def hello_jovian():
   return render_template('home.html',
                          products=babyProducts,
                          company_name='Bespojke')
+
 
 @app.route("/api/sgtd")
 def SGTD():
@@ -97,24 +98,44 @@ def Vessel_movement():
 
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive(formName=None):
-  try:  
-      data = request.data  # Get the raw data from the request body
-      data_str = data.decode('utf-8')  # Decode data as a UTF-8 string
+  try:
+    data = request.data  # Get the raw data from the request body
+    print(data)
+    data_str = data.decode('utf-8')  # Decode data as a UTF-8 string
+    # Convert the JSON string to a Python dictionary
+    data_dict = json.loads(data_str)
+    # Extract the last item from the "payload" array
+    last_payload_item = data_dict['payload'][-1]
+    # Open the Google Sheets spreadsheet by title or URL
+    spreadsheet = gc.open(
+      "https://docs.google.com/spreadsheets/d/1yvUCUCfZsTPSMf88i9JoZocSsSm7iyclVCimCGpuTEk/edit#gid=0"
+    )
+    # Select a specific worksheet within the spreadsheet
+    worksheet = spreadsheet.worksheet(
+      "replit")  # Change the sheet name if needed
+    # Create a dictionary to map column names to values
+    row_data = {
+            "vm_vessel_particulars.vessel_nm": last_payload_item['vm_vessel_particulars'][0]['vessel_nm'],
+            "vm_vessel_particulars.vessel_imo_no": last_payload_item['vm_vessel_particulars'][0]['vessel_imo_no'],
+            "vm_vessel_particulars.vessel_flag": last_payload_item['vm_vessel_particulars'][0]['vessel_flag'],
+            "vm_vessel_particulars.vessel_call_sign": last_payload_item['vm_vessel_particulars'][0]['vessel_call_sign'],
+            "vm_vessel_location_from": last_payload_item['vm_vessel_location_from'],
+            "vm_vessel_location_to": last_payload_item['vm_vessel_location_to'],
+            "vm_vessel_movement_height": last_payload_item['vm_vessel_movement_height'],
+            "vm_vessel_movement_type": last_payload_item['vm_vessel_movement_type'],
+            "vm_vessel_movement_start_dt": last_payload_item['vm_vessel_movement_start_dt'],
+            "vm_vessel_movement_end_dt": last_payload_item['vm_vessel_movement_end_dt'],
+            "vm_vessel_movement_status": last_payload_item['vm_vessel_movement_status'],
+            "vm_vessel_movement_draft": last_payload_item['vm_vessel_movement_draft']
+        }
 
-      # Open the Google Sheets spreadsheet by title or URL
-      spreadsheet = gc.open("https://docs.google.com/spreadsheets/d/1yvUCUCfZsTPSMf88i9JoZocSsSm7iyclVCimCGpuTEk/edit#gid=0")
-
-      # Select a specific worksheet within the spreadsheet
-      worksheet = spreadsheet.replit  # Change the sheet name if needed
-
-      # Append the data to the worksheet
-      worksheet.append_table(values=[data_str.split(',')])  # Assuming data is comma-separated
-
-      return "Data saved to Google Sheets."
+        # Append the data to the worksheet
+    worksheet.append_table(values=[list(row_data.values())])
+    return "Data saved to Google Sheets."
   except Exception as e:
-      # Handle the error gracefully and log it
-      print("An error occurred:", str(e))
-      return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
+    # Handle the error gracefully and log it
+    print("An error occurred:", str(e))
+    return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
 
 
 @app.route("/api/vessel/receive/get")
