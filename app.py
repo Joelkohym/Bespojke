@@ -1,15 +1,25 @@
 from flask import Flask, render_template, jsonify, request
-import http.client
 import requests
 import json
+import pygsheets
 import os
-import sys
-import pickle
+from google.oauth2 import service_account
 from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+from googleapiclient.errors import HttpError
+
+# import uuid
+# from replit import db
+# from gsheets import write_spread_sheet_data
+# from forms import FormContainerForm, SectionForm
+# from flask import Flask, render_template, flash, redirect, url_for, request
+# from utils import db_init, dotdict, default_wf, default_sections, evaluate, hash_id, tabulate_answers, to_pretty_json
 
 app = Flask(__name__)
+
+creds = json.loads(os.environ.get('GSHEET_API_CREDENTIALS'))
+with open('gcreds.json', 'w') as fp:
+    json.dump(creds, fp)
+gc = pygsheets.authorize(service_file = 'gcreds.json')
 
 babyProducts = [{
   'id': 1,
@@ -17,42 +27,20 @@ babyProducts = [{
   'price': '$27.90',
   'description': 'For babies'
 }]
-
-DEFAULT_CONF_DIR = os.path.join(os.environ['HOME'], '.google')
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
-AUTHORIZATION_GUIDANCE="""
-Please download Google client configuration from ENABLE GOOGLE SHEETS API button
-at https://developers.google.com/sheets/api/quickstart/python to "%s"
-"""
-
-USAGE="""
-Usage: python3 sheet.py 'GOOGLE_SHEET_ID' [GOOGLE_SHEET_RANGE]
-Outputs contents of specified range of specified Google spreadsheet.
-
-Setup: ./setup.sh; source *-env/bin/activate
-
-%s
-
-First time usage opens browser with downloaded credentials to authorize. 
-""" % (AUTHORIZATION_GUIDANCE % os.path.join(DEFAULT_CONF_DIR, 'credentials.json'))
-
-
-
-
-
+# Set up OAuth2 credentials using your JSON credentials file
+scope = [
+  "https://spreadsheets.google.com/feeds",
+  "https://www.googleapis.com/auth/drive"
+]
+creds = ServiceAccountCredentials.from_json_keyfile_name(
+  "your-credentials.json", scope)
+client = gspread.authorize(creds)
 
 @app.route("/")
 def hello_jovian():
   return render_template('home.html',
                          products=babyProducts,
                          company_name='Bespojke')
-
-
-@app.route("/api/jobs")
-def list_jobs():
-  return jsonify(babyProducts)
-
 
 @app.route("/api/sgtd")
 def SGTD():
@@ -65,8 +53,6 @@ def SGTD():
   # Check the response
   if r_GET.status_code == 200:
     print("Config Data retrieved successfully!")
-    #print(r_GET.text)
-    #print(r_GET.json())
   else:
     print(f"Failed to get Config Data. Status code: {r_GET.status_code}")
     print(r_GET.text
@@ -118,19 +104,31 @@ def Vessel_movement():
 
 
 @app.route("/api/vessel/receive", methods=['POST'])
-def Vessel_movement_receive():
-  data = request.data  # Get the raw data from the request body
-  # Assuming the data is in JSON format, parse it
-  #json_data = json.loads(data)
-  # Save the JSON data to a JSON file
-  print(data)
-  #carry gsheet writing
-  
-  return "Data saved as a text file."
+def Vessel_movement_receive(formName=None):
+  try:
+    data = request.data  # Get the raw data from the request body
+    data_str = data.decode('utf-8')  # Decode data as a UTF-8 string
+    # Open the Google Sheets spreadsheet by title or URL
+    spreadsheet = client.open("https://docs.google.com/spreadsheets/d/1yvUCUCfZsTPSMf88i9JoZocSsSm7iyclVCimCGpuTEk/edit#gid=1822445911")
+    # Select a specific worksheet within the spreadsheet
+    worksheet = spreadsheet.get_worksheet("replit")  # Change the index if needed
+    # Append the data to the worksheet
+    worksheet.append_table([data_str])
+    #json_data = json.loads(data)
+    # Save the JSON data to a JSON file
+    print(data)
+    #carry gsheet writing
+    return "Data saved to Google Sheets."
+  except Exception as e:
+    # Handle the error gracefully and log it
+    print("An error occurred:", str(e))
+    return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
+
 
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
   pass
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', debug=True)

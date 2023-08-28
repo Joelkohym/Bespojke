@@ -282,6 +282,21 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7"
 pyasn1 = ">=0.4.6,<0.6.0"
 
 [[package]]
+name = "pygsheets"
+version = "2.0.6"
+description = "Google Spreadsheets Python API v4"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[package.dependencies]
+google-api-python-client = ">=2.50.0"
+google-auth-oauthlib = ">=0.7.1"
+
+[package.extras]
+pandas = ["pandas (>=0.14.0)"]
+
+[[package]]
 name = "pyparsing"
 version = "3.1.1"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
@@ -409,7 +424,7 @@ protobuf = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "db70af9365ce6340dde7a5acfe7c15374162119c30c7fab84034b9edc07fae4b"
+content-hash = "d6224410054d645195243fefbb574c6ce104c9e4f852b5554a68aa321f1f9ba4"
 
 [metadata.files]
 blinker = []
@@ -436,6 +451,7 @@ oauthlib = []
 protobuf = []
 pyasn1 = []
 pyasn1-modules = []
+pygsheets = []
 pyparsing = []
 requests = []
 requests-oauthlib = []
