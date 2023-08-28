@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 
-gc = pygsheets.service_account(filename="gcreds.json")
+gc = pygsheets.authorize(service_file= 'gcreds.json')
 
 babyProducts = [{
   'id': 1,
