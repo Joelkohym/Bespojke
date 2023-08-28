@@ -103,7 +103,7 @@ def Vessel_movement():
 @app.route("/api/vessel/receive", methods=['POST'])
 def Vessel_movement_receive():
     try:
-        data = request.data  # Get the raw data from the request body
+        data = request.get_json()  # Get the raw data from the request body
 
         # Attempt to write data to a text file
         with open('data.txt', 'w') as text_file:
