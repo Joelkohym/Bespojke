@@ -13,10 +13,10 @@ import leafmap.foliumap as leafmap
 # from utils import db_init, dotdict, default_wf, default_sections, evaluate, hash_id, tabulate_answers, to_pretty_json
 
 app = Flask(__name__)
-my_secret = os.environ['GSHEET_API_CREDENTIALS']
+#my_secret = os.environ['GSHEET_API_CREDENTIALS']
 #service_account_info = json.loads(my_secret)
 # my_credentials = service_account.Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
-gc = pygsheets.authorize(service_account_json=my_secret)
+#gc = pygsheets.authorize(service_account_json=my_secret)
 # gc = pygsheets.authorize(service_account_env_var='GSHEET_API_CREDENTIALS')
 
 babyProducts = [{
