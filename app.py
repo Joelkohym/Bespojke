@@ -147,16 +147,16 @@ def VMR_GET():
   cities = 'static/sg_cities.csv'
   regions = 'static/SG_anchorages.geojson'
   m.add_geojson(regions, layer_name='SG Anchorages')
-  #m.add_geojson(regions, layer_name='SG Regions')
-  m.add_points_from_xy(
-      cities,
-      x="longitude",
-      y="latitude",
-      #color_column='region',
-      icon_names=['gear', 'map', 'leaf', 'globe'],
-      spin=True,
-      add_legend=True,
-  )
+
+  # m.add_points_from_xy(
+  #     cities,
+  #     x="longitude",
+  #     y="latitude",
+  #     #color_column='region',
+  #     icon_names=['gear', 'map', 'leaf', 'globe'],
+  #     spin=True,
+  #     add_legend=True,
+  # )
   #file='mymap.html' 
   #with open(file, 'w') as filetowrite:
   m.to_html("templates/mymap.html")
