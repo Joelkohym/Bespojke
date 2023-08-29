@@ -312,8 +312,7 @@
 {
       "type": "Feature",
       "properties": {
-        "NAME": "Western Quarantine & Immigration Anchorage (Abbreviated
-Code: AWQI)"
+        "NAME": "Western Quarantine & Immigration Anchorage (Abbreviated Code: AWQI)"
       },
       "geometry": {
         "type": "Polygon",
@@ -521,8 +520,7 @@ Code: AWQI)"
 {
       "type": "Feature",
       "properties": {
-        "NAME": "Sudong Special Purpose Anchorage (Abbreviated
-Code: ASSPU)"
+        "NAME": "Sudong Special Purpose Anchorage (Abbreviated Code: ASSPU)"
       },
       "geometry": {
         "type": "Polygon",
