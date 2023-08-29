@@ -308,6 +308,272 @@
           ]
         ]
       }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Western Quarantine & Immigration Anchorage (Abbreviated
+Code: AWQI)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [103.809667, 1.218833],
+            [103.826533, 1.226533],
+            [103.83215, 1.219117],
+            [103.8291, 1.21245],
+            [103.81715, 1.21245],
+            [103.809667, 1.218833]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Western Anchorage (Abbreviated Code: AWW)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.796767, 1.250333],
+  [103.804533, 1.255983],
+  [103.812633, 1.242733],
+  [103.826533, 1.226533],
+  [103.8218, 1.2388],
+  [103.796767, 1.250333]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Western Petroleum A Anchorage (Abbreviated Code: AWPA)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.788717, 1.248083],
+  [103.796767, 1.250333],
+  [103.806383, 1.239717],
+  [103.7992, 1.246917],
+  [103.788717, 1.248083]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Western Holding Anchorage (Abbreviated Code: AWH)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.7853, 1.239083],
+  [103.788717, 1.248083],
+  [103.7992, 1.246917],
+  [103.795933, 1.230383],
+  [103.800583, 1.237267],
+  [103.7853, 1.239083]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Western Petroleum B Anchorage (Abbreviated Code: AWPB)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.795933, 1.230383],
+  [103.806383, 1.239717],
+  [103.8218, 1.2388],
+  [103.817767, 1.213017],
+  [103.795933, 1.230383]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Selat Pauh Anchorage (Abbreviated Code: ASPLU)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.714717, 1.227733],
+  [103.71745, 1.229117],
+  [103.724117, 1.2308],
+  [103.748567, 1.2219],
+  [103.757717, 1.223567],
+  [103.758583, 1.221333],
+  [103.74745, 1.204233],
+  [103.74355, 1.204233],
+  [103.7405, 1.2047],
+  [103.744767, 1.2051],
+  [103.714717, 1.227733]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Selat Pauh Petroleum Anchorage (Abbreviated Code: ASPP)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.714717, 1.227733],
+  [103.744767, 1.2051],
+  [103.7405, 1.2047],
+  [103.74545, 1.2155],
+  [103.745433, 1.214767],
+  [103.721267, 1.2256]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Raffles Petroleum Anchorage (Abbreviated Code: ARP)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.7362, 1.200767],
+  [103.74015, 1.20415],
+  [103.750633, 1.2073],
+  [103.758617, 1.204217],
+  [103.7362, 1.200767]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Raffles Reserved Anchorage (Abbreviated Code: ARAFR)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.741883, 1.189467],
+  [103.750633, 1.2073],
+  [103.761167, 1.194117],
+  [103.750, 1.173333],
+  [103.741883, 1.189467]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Sudong Petroleum Holding Anchorage (Abbreviated Code:ASPH)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.719517, 1.16775],
+  [103.715567, 1.157367],
+  [103.716883, 1.155217],
+  [103.722567, 1.1659],
+  [103.719517, 1.16775]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Sudong Explosive Anchorage (Abbreviated Code: ASUEX)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.711, 1.178033],
+  [103.719517, 1.16775],
+  [103.722567, 1.1659],
+  [103.708367, 1.173367],
+  [103.711, 1.178033]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Sudong Special Purpose Anchorage (Abbreviated
+Code: ASSPU)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.707033, 1.173667],
+  [103.711, 1.178033],
+  [103.7184, 1.190733],
+  [103.675233, 1.202633],
+  [103.6727, 1.196467],
+  [103.675033, 1.1961],
+  [103.707033, 1.173667]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Sudong Holding Anchorage (Abbreviated Code: ASH)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.671167, 1.204617],
+  [103.670867, 1.2052],
+  [103.66805, 1.197167],
+  [103.671067, 1.19875],
+  [103.671167, 1.204617]
+          ]
+        ]
+      }
+    },
+{
+      "type": "Feature",
+      "properties": {
+        "NAME": "Very Large Crude Carrier Anchorage (Abbreviated Code: AVLCC)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+  [103.641333, 1.221483],
+  [103.657517, 1.22835],
+  [103.656283, 1.207833],
+  [103.647, 1.197667],
+  [103.641333, 1.221483]
+          ]
+        ]
+      }
     }
   ]
 }
