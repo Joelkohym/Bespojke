@@ -143,7 +143,7 @@ def Vessel_movement_receive(formName=None):
 
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
-  m = leafmap.Map(center=[1.257167, 103.897], zoom=17)
+  m = leafmap.Map(center=[1.257167, 103.897], zoom=12)
   cities = 'static/sg_cities.csv'
   regions = 'static/SG_anchorages.geojson'
   m.add_geojson(regions, layer_name='SG Anchorages')
