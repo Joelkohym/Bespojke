@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "name": "SG Anchorages",
+  "properties": {},
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Changi Barge Temporary Holding Anchorage (Abbreviated Code: ACBTH)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [104.044476, 1.355366],
+            [104.05838, 1.353651],
+            [104.057007, 1.345247],
+            [104.046535, 1.344561],
+            [104.040184, 1.350392],
+            [104.044476, 1.355366]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Changi General Purposes Anchorage (Abbreviated Code: ACGP)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [104.05632, 1.339244],
+            [104.053402, 1.331183],
+            [104.06559, 1.329982],
+            [104.065933, 1.337357],
+            [104.05632, 1.339244]
+          ]
+        ]
+      }
+    }
+  ]
+}

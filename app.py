@@ -141,14 +141,13 @@ def Vessel_movement_receive(formName=None):
     print("An error occurred:", str(e))
     return f"An error occurred: {str(e)}", 500  # Return a 500 Internal Server Error status code
 
-
 @app.route("/api/vessel/receive/get")
 def VMR_GET():
-  m = leafmap.Map(center=(103, 1), zoom=10)
+  m = leafmap.Map(center=[1.257167, 103.897], zoom=17)
   cities = 'static/sg_cities.csv'
-  regions = 'static/singapore_administrative_region_boundaries.geojson'
-
-  m.add_geojson(regions, layer_name='SG Regions')
+  regions = 'static/SG_anchorages.geojson'
+  m.add_geojson(regions, layer_name='SG Anchorages')
+  #m.add_geojson(regions, layer_name='SG Regions')
   m.add_points_from_xy(
       cities,
       x="longitude",
@@ -158,8 +157,10 @@ def VMR_GET():
       spin=True,
       add_legend=True,
   )
-  {"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[103.953238,1.304523],[103.950405,1.298863],[103.958731,1.295261],[103.963623,1.301436],[103.959675,1.309325],[103.953238,1.304523]]]}}
-  m.to_html("mymap.html")
+  #file='mymap.html' 
+  #with open(file, 'w') as filetowrite:
+  m.to_html("templates/mymap.html")
+  #m.to_html("mymap.html")
   return render_template('mymap.html')
 
 if __name__ == '__main__':
